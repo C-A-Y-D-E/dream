@@ -15,8 +15,8 @@ def init():
 
     t1 = time.time()
     model_id = "dreamlike-art/dreamlike-diffusion-1.0"
-    model.scheduler = EulerDiscreteScheduler.from_config(
-        model.scheduler.config)
+#     model.scheduler = EulerDiscreteScheduler.from_config(
+#         model.scheduler.config)
 
     model = StableDiffusionPipeline.from_pretrained(model_id).to("cuda")
     t2 = time.time()
