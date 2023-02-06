@@ -15,8 +15,8 @@ def init():
 
     t1 = time.time()
     model_id = "dreamlike-art/dreamlike-diffusion-1.0"
-    # model.scheduler = EulerDiscreteScheduler.from_config(
-    #     model.scheduler.config)
+    model.scheduler = EulerDiscreteScheduler.from_config(
+        model.scheduler.config)
 
     model = StableDiffusionPipeline.from_pretrained(model_id).to("cuda")
     t2 = time.time()
@@ -49,7 +49,7 @@ def inference(model_inputs: dict) -> dict:
     t2 = time.time()
     print("Inference took - ", t2-t1, "seconds")
     buffered = BytesIO()
-    image.save(buffered, format="JPEG")
+    image.save(buffered, format="PNG")
     image_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
     # Return the results as a dictionary
