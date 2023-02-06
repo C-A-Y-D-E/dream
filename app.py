@@ -34,7 +34,7 @@ def inference(model_inputs: dict) -> dict:
     negative = model_inputs.get('negative', None)
     steps = model_inputs.get('num_inference_steps', 50)
     guidance = model_inputs.get('guidance_scale', 7)
-    strength = model_inputs.get('strength', 7)
+#     strength = model_inputs.get('strength', 7)
     height = model_inputs.get('height', 704)
     width = model_inputs.get('width', 576)
 
@@ -45,7 +45,7 @@ def inference(model_inputs: dict) -> dict:
     t1 = time.time()
     with autocast("cuda"):
         image = model(prompt, negative_prompt=negative, num_images_per_prompt=1,
-                      num_inference_steps=steps, guidance_scale=guidance, strength=strength, height=height, width=width, ).images[0]
+                      num_inference_steps=steps, guidance_scale=guidance, height=height, width=width).images[0]
     t2 = time.time()
     print("Inference took - ", t2-t1, "seconds")
     buffered = BytesIO()
